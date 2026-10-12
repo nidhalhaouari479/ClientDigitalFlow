@@ -134,8 +134,8 @@
   "contact.title": "Let’s talk about your project.",
   "contact.description": "Tell us what you want to build. We will help you clarify the scope, the roadmap and the best technical path.",
   "contact.direct": "Direct contact",
-  "contact.directTitle": "Reach us from Tunisia, Italy or anywhere.",
-  "contact.directDescription": "The company is based in Milano, Italy, with direct phone contacts available for Tunisia and Italy.",
+  "contact.directTitle": "Reach us from the USA, Italy, Tunisia or anywhere.",
+  "contact.directDescription": "The company is based in Milano, Italy, with direct phone lines for the USA, Italy and Tunisia.",
   "contact.email": "Email",
   "contact.phoneTunisia": "Tunisia",
   "contact.phoneItaly": "Italy",
@@ -253,5 +253,6 @@
   "pages.about.valuesTitle": "What we stand for",
   "pages.about.expertiseEyebrow": "Our Expertise",
   "pages.about.expertiseTitle": "Proven across projects and clients",
-  "pages.about.expertiseDescription": "Numbers that reflect the work and the trust our clients place in us."
+  "pages.about.expertiseDescription": "Numbers that reflect the work and the trust our clients place in us.",
+  "contact.localTime": "Local time"
 }

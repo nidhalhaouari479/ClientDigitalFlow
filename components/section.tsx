@@ -1,3 +1,4 @@
+import ShinyText from '@/components/react-bits/ShinyText'
 import { cn } from '@/lib/utils'
 
 export function Eyebrow({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -9,7 +10,9 @@ export function Eyebrow({ children, className }: { children: React.ReactNode; cl
       )}
     >
       <span className="h-px w-6 bg-primary" aria-hidden="true" />
-      {children}
+      <ShinyText color="#2563eb" shineColor="#93c5fd" speed={3} delay={2}>
+        {children}
+      </ShinyText>
     </span>
   )
 }

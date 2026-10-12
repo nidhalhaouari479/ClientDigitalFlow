@@ -3,6 +3,8 @@
 import { ArrowRight } from 'lucide-react'
 import { ButtonLink } from '@/components/site-button'
 import { Reveal } from '@/components/reveal'
+import { StarButtonLink } from '@/components/star-button-link'
+import Aurora from '@/components/react-bits/Aurora'
 import { localizePath } from '@/lib/i18n'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -24,24 +26,19 @@ export function CTASection({
   return (
     <section className="container-page py-20 md:py-24">
       <Reveal className="relative overflow-hidden rounded-2xl bg-foreground px-6 py-16 text-background md:px-16 md:py-20">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 80% 20%, var(--primary) 0%, transparent 45%), radial-gradient(circle at 10% 90%, var(--primary) 0%, transparent 40%)',
-          }}
-        />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-70">
+          <Aurora colorStops={['#1d4ed8', '#3b82f6', '#6366f1']} amplitude={0.9} blend={0.55} speed={0.5} />
+        </div>
         <div className="relative flex flex-col items-start gap-6 md:max-w-2xl">
           <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl md:leading-[1.05]">
             {resolvedTitle}
           </h2>
           <p className="text-pretty text-base leading-relaxed text-background/70 md:text-lg">{resolvedDescription}</p>
           <div className="flex flex-wrap gap-3">
-            <ButtonLink href={localizePath(primaryHref, locale)} variant="primary" size="lg">
+            <StarButtonLink href={localizePath(primaryHref, locale)}>
               {resolvedPrimaryLabel}
               <ArrowRight className="size-4" />
-            </ButtonLink>
+            </StarButtonLink>
             <ButtonLink
               href={localizePath('/projects', locale)}
               size="lg"

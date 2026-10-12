@@ -112,6 +112,35 @@
       transform: scaleX(1);
     }
   }
+  @keyframes ping-soft {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+}
+
+/* Gradient accent on the last words of a React Bits SplitText headline. */
+.headline-accent,
+.headline-accent-3 {
+  --accent-from: var(--primary);
+  --accent-to: #7c3aed;
+}
+
+.headline-accent .split-word:nth-last-of-type(-n + 2),
+.headline-accent-3 .split-word:nth-last-of-type(-n + 3) {
+  background-image: linear-gradient(100deg, var(--accent-from), var(--accent-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ping-soft {
+  animation: ping-soft 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 .founder-motion {
@@ -167,7 +196,8 @@
   .hero-panel-motion,
   .hero-progress,
   .process-line::after,
-  .process-line-vertical::after {
+  .process-line-vertical::after,
+  .ping-soft {
     animation: none;
   }
 }
@@ -207,9 +237,6 @@
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     -webkit-font-smoothing: antialiased;
   }
-  html {
-    scroll-behavior: smooth;
-  }
   button,
   a,
   input,
@@ -236,8 +263,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}

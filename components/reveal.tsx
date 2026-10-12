@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
+import { gsap, useGSAP } from '@/lib/gsap'
 import { cn } from '@/lib/utils'
 
 export function Reveal({
@@ -15,38 +16,29 @@ export function Reveal({
   as?: React.ElementType
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
 
-  useEffect(() => {
-    const node = ref.current
-    if (!node) return
-    if (typeof IntersectionObserver === 'undefined') {
-      setVisible(true)
-      return
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
-    )
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [])
+  useGSAP(
+    () => {
+      gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.fromTo(
+          ref.current,
+          { autoAlpha: 0, y: 16 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.7,
+            delay: delay / 1000,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: ref.current, start: 'top bottom-=40', once: true },
+          },
+        )
+      })
+    },
+    { scope: ref, dependencies: [delay] },
+  )
 
   return (
-    <Tag
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={cn(
-        'transition-all duration-700 ease-out will-change-transform motion-reduce:transition-none',
-        visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
-        className,
-      )}
-    >
+    <Tag ref={ref} className={cn('opacity-0 motion-reduce:opacity-100', className)}>
       {children}
     </Tag>
   )

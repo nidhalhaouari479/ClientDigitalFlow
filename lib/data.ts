@@ -28,11 +28,16 @@ export const COMPANY = {
   name: 'Client Digital Flow',
   tagline: 'Software Solutions',
   email: 'exemple@gmail.com',
+  phoneUSA: '+1 (305) 499-0073',
   phone: '+216 29897262',
   phoneItaly: '+39 351 941 0499',
   whatsapp: '+216 29897262',
   linkedin: 'https://linkedin.com',
   address: 'Milano, Italie',
+}
+
+export function telHref(phone: string) {
+  return `tel:${phone.replace(/[^\d+]/g, '')}`
 }
 
 export const STATS = [

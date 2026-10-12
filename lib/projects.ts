@@ -277,14 +277,13 @@ function isKnownCategory(category: string): category is ProjectCategory {
 function hasDisplayableProjectData(item: RealizedProjectApiItem, locale: Locale) {
   const categories = (item.categories || []).filter(Boolean)
   const technologies = (item.stacks || []).filter(Boolean)
-  const images = (item.image_urls || []).filter(isPublicUrl)
 
+  // Images are optional: projects without one ("In Progress", "Private") show a branded tile instead.
   return Boolean(
     localizedValue(item, 'name', locale).trim()
       && localizedValue(item, 'description', locale).trim()
       && categories.length
-      && technologies.length
-      && images.length,
+      && technologies.length,
   )
 }
 

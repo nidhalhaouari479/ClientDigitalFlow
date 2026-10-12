@@ -1,9 +1,9 @@
 "use client"
 
 import Link from 'next/link'
-import { Users, Camera, Globe, GitBranch } from 'lucide-react'
+import { Users, Camera, Globe, GitBranch, Mail, Phone } from 'lucide-react'
 import { Logo } from '@/components/logo'
-import { COMPANY, SERVICES, SOLUTIONS } from '@/lib/data'
+import { COMPANY, SERVICES, SOLUTIONS, telHref } from '@/lib/data'
 import { localizePath } from '@/lib/i18n'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -38,6 +38,12 @@ const columns = [
   },
 ]
 
+const phoneLines = [
+  { code: 'US', phone: COMPANY.phoneUSA },
+  { code: 'IT', phone: COMPANY.phoneItaly },
+  { code: 'TN', phone: COMPANY.phone },
+]
+
 const socials = [
   { icon: Users, href: COMPANY.linkedin, label: 'LinkedIn' },
   { icon: Camera, href: 'https://instagram.com', label: 'Instagram' },
@@ -56,6 +62,23 @@ export function Footer() {
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
               {t('footerDescription', 'We design, develop and scale digital products, software platforms and AI-powered solutions for ambitious teams.')}
             </p>
+            <ul className="flex flex-col gap-2 text-sm">
+              {phoneLines.map((line) => (
+                <li key={line.code}>
+                  <a href={telHref(line.phone)} className="inline-flex items-center gap-2.5 text-muted-foreground transition-colors hover:text-foreground">
+                    <Phone className="size-3.5 text-primary" aria-hidden="true" />
+                    <span className="w-6 font-mono text-xs font-semibold text-foreground">{line.code}</span>
+                    {line.phone}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href={`mailto:${COMPANY.email}`} className="inline-flex items-center gap-2.5 text-muted-foreground transition-colors hover:text-foreground">
+                  <Mail className="size-3.5 text-primary" aria-hidden="true" />
+                  {COMPANY.email}
+                </a>
+              </li>
+            </ul>
             <div className="flex items-center gap-2">
               {socials.map((s) => (
                 <a

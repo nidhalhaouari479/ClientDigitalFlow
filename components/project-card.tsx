@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Clock3, ExternalLink, LockKeyhole } from 'lucide-react'
@@ -19,6 +20,8 @@ export function ProjectCard({ project, className }: { project: Project; classNam
       : t('project.status.live', 'Live')
   const createdAt = project.createdAt || project.timeline
   const externalUrl = project.projectUrl || project.githubUrl
+  const [imageFailed, setImageFailed] = useState(false)
+  const hasImage = Boolean(project.image) && !project.image.includes('placeholder') && !imageFailed
 
   return (
     <article
@@ -27,14 +30,24 @@ export function ProjectCard({ project, className }: { project: Project; classNam
         className,
       )}
     >
-      <Link href={caseStudyHref} className="relative block aspect-[16/10] overflow-hidden bg-muted">
-        <Image
-          src={project.image || '/placeholder.svg'}
-          alt={t('project.previewAlt', '{project} project preview').replace('{project}', project.name)}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        />
+      <Link href={caseStudyHref} className="relative block aspect-[16/10] overflow-hidden bg-gradient-to-br from-accent to-secondary">
+        {hasImage ? (
+          <Image
+            src={project.image}
+            alt={t('project.previewAlt', '{project} project preview').replace('{project}', project.name)}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            onError={() => setImageFailed(true)}
+            className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        ) : (
+          // No usable image (missing, "In Progress", or failed to load): show a branded tile instead of a broken icon.
+          <span aria-hidden="true" className="absolute inset-0 grid place-items-center">
+            <span className="grid size-20 place-items-center rounded-2xl bg-primary text-3xl font-semibold text-primary-foreground shadow-[0_20px_40px_-20px_rgba(37,99,235,0.8)]">
+              {project.name.trim().charAt(0).toUpperCase()}
+            </span>
+          </span>
+        )}
         <span className="absolute left-4 top-4 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground backdrop-blur">
           {project.category}
         </span>

@@ -54,14 +54,14 @@ export default async function ServiceDetailPage({
   return (
     <>
       <PageHero eyebrow={t('pages.services.eyebrow', 'Services')} title={service.title} description={service.hero}>
-        <div className="mt-2 flex flex-wrap gap-3">
+        <div className="mt-2 flex flex-wrap justify-center gap-5">
           <ButtonLink href={localizePath('/contact', locale)} variant="primary" size="lg">
             {t('startProject', 'Start a Project')}
             <ArrowRight className="size-4" />
           </ButtonLink>
           <Link
             href={localizePath('/services', locale)}
-            className="inline-flex items-center gap-1.5 self-center text-sm font-medium text-muted-foreground hover:text-foreground"
+            className="inline-flex items-center gap-1.5 self-center text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="size-4" />
             {t('serviceDetail.allServices', 'All Services')}

@@ -14,12 +14,30 @@ type ProjectImageGalleryProps = {
 
 export function ProjectImageGallery({ images, fallbackImage, projectName }: ProjectImageGalleryProps) {
   const { t } = useTranslation()
-  const galleryImages = useMemo(() => {
-    const uniqueImages = Array.from(new Set([...(images || []), fallbackImage].filter(Boolean)))
-    return uniqueImages.length ? uniqueImages : ['/placeholder.svg']
-  }, [fallbackImage, images])
+  const [failedImages, setFailedImages] = useState<string[]>([])
+  // Skip placeholders and images that failed to load, so the browser's broken-image icon never shows.
+  const galleryImages = useMemo(
+    () =>
+      Array.from(new Set([...(images || []), fallbackImage]))
+        .filter((image) => image && !image.includes('placeholder') && !failedImages.includes(image)),
+    [fallbackImage, images, failedImages],
+  )
   const [activeIndex, setActiveIndex] = useState(0)
   const hasMultipleImages = galleryImages.length > 1
+  const markFailed = (image: string) => {
+    setFailedImages((current) => (current.includes(image) ? current : [...current, image]))
+    setActiveIndex(0)
+  }
+
+  if (!galleryImages.length) {
+    return (
+      <div className="grid aspect-[16/9] place-items-center rounded-2xl border border-border bg-gradient-to-br from-accent to-secondary">
+        <span aria-hidden="true" className="grid size-24 place-items-center rounded-3xl bg-primary text-4xl font-semibold text-primary-foreground shadow-[0_24px_50px_-24px_rgba(37,99,235,0.8)]">
+          {projectName.trim().charAt(0).toUpperCase()}
+        </span>
+      </div>
+    )
+  }
 
   const showPreviousImage = () => {
     setActiveIndex((current) => (current === 0 ? galleryImages.length - 1 : current - 1))
@@ -55,7 +73,7 @@ export function ProjectImageGallery({ images, fallbackImage, projectName }: Proj
                 activeIndex === index ? 'border-primary ring-2 ring-primary/25' : 'border-border hover:border-primary/60',
               )}
             >
-              <Image src={image} alt="" fill sizes="160px" className="object-cover" />
+              <Image src={image} alt="" fill sizes="160px" onError={() => markFailed(image)} className="object-cover" />
               {showsRemainingCount ? (
                 <span className="absolute inset-0 grid place-items-center bg-black/65 text-lg font-semibold text-white">
                   +{remainingImages}
@@ -73,6 +91,7 @@ export function ProjectImageGallery({ images, fallbackImage, projectName }: Proj
       <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-border bg-muted">
         <Image
           src={galleryImages[activeIndex]}
+          onError={() => markFailed(galleryImages[activeIndex])}
           alt={t('project.gallery.imageAlt', '{project} interface {number}')
             .replace('{project}', projectName)
             .replace('{number}', String(activeIndex + 1))}

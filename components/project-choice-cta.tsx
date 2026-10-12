@@ -2,6 +2,7 @@
 
 import { Bot, Globe, Workflow, ArrowRight } from 'lucide-react'
 import { ButtonLink } from '@/components/site-button'
+import Aurora from '@/components/react-bits/Aurora'
 import { localizePath } from '@/lib/i18n'
 import { useTranslation } from '@/hooks/useTranslation'
 
@@ -17,6 +18,9 @@ export function ProjectChoiceCTA() {
   return (
     <section className="container-page py-20 md:py-24">
       <div className="relative overflow-hidden rounded-2xl bg-foreground px-6 py-14 text-background md:px-12 md:py-16">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-70">
+          <Aurora colorStops={['#1d4ed8', '#3b82f6', '#6366f1']} amplitude={0.9} blend={0.55} speed={0.5} />
+        </div>
         <div className="relative grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-background/60">

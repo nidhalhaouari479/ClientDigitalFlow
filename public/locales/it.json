@@ -134,8 +134,8 @@
   "contact.title": "Parliamo del tuo progetto.",
   "contact.description": "Raccontaci cosa vuoi costruire. Ti aiuteremo a chiarire ambito, roadmap e percorso tecnico migliore.",
   "contact.direct": "Contatto diretto",
-  "contact.directTitle": "Contattaci dalla Tunisia, dall'Italia o da ovunque.",
-  "contact.directDescription": "La società ha sede a Milano, Italia, con contatti telefonici diretti per Tunisia e Italia.",
+  "contact.directTitle": "Contattaci da USA, Italia, Tunisia o da qualsiasi luogo.",
+  "contact.directDescription": "L'azienda ha sede a Milano, Italia, con linee dirette per USA, Italia e Tunisia.",
   "contact.email": "Email",
   "contact.phoneTunisia": "Tunisia",
   "contact.phoneItaly": "Italia",
@@ -501,5 +501,6 @@
   "service.erp-crm.faq1.q": "Potete migrare i nostri dati esistenti?",
   "service.erp-crm.faq1.a": "Sì. La migrazione strutturata e la validazione dei dati fanno parte dei nostri progetti ERP e CRM.",
   "service.erp-crm.faq2.q": "Il sistema si integrerà con i nostri strumenti contabili?",
-  "service.erp-crm.faq2.a": "Integriamo tramite API le piattaforme più diffuse per finanza, pagamenti e comunicazione."
+  "service.erp-crm.faq2.a": "Integriamo tramite API le piattaforme più diffuse per finanza, pagamenti e comunicazione.",
+  "contact.localTime": "Ora locale"
 }
