@@ -44,12 +44,12 @@ const CATEGORY_LABELS: Record<ProjectCategory, Record<Locale, string>> = {
   'AI Chatbots': {
     en: 'AI Chatbots',
     fr: 'Chatbots IA',
-    it: 'Chatbot IA',
+    it: "Chatbot basati sull'IA",
   },
   'Mobile Apps / PWA': {
-    en: 'Mobile Apps / PWA',
+    en: 'Mobile Apps / PWAs',
     fr: 'Apps mobiles / PWA',
-    it: 'App mobili / PWA',
+    it: 'Applicazioni mobile / PWA',
   },
   Automation: {
     en: 'Automation',
@@ -59,12 +59,12 @@ const CATEGORY_LABELS: Record<ProjectCategory, Record<Locale, string>> = {
   'Dashboards / Data Visualization': {
     en: 'Dashboards / Data Visualization',
     fr: 'Tableaux de bord / Visualisation de donnees',
-    it: 'Dashboard / Visualizzazione dati',
+    it: 'Dashboard / visualizzazione dei dati',
   },
   'Business Platforms': {
     en: 'Business Platforms',
     fr: 'Plateformes business',
-    it: 'Piattaforme business',
+    it: 'Piattaforme aziendali',
   },
   'Computer Vision': {
     en: 'Computer Vision',
@@ -74,7 +74,7 @@ const CATEGORY_LABELS: Record<ProjectCategory, Record<Locale, string>> = {
   'Websites / Landing Pages': {
     en: 'Websites / Landing Pages',
     fr: 'Sites web / Landing pages',
-    it: 'Siti web / Landing page',
+    it: 'Siti web / landing page',
   },
 }
 
