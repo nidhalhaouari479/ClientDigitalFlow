@@ -27,7 +27,7 @@ import {
 export const COMPANY = {
   name: 'Client Digital Flow',
   tagline: 'Software Solutions',
-  email: 'exemple@gmail.com',
+  email: 'contact@cdf-solution.com',
   phoneUSA: '+1 (305) 499-0073',
   phone: '+216 29897262',
   phoneItaly: '+39 351 941 0499',
